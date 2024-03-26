@@ -1,8 +1,7 @@
 <?php
     // require('C:\xampp\htdocs\harbor-lights-master\admin\inc\essentials.php');
     require('essentials.php');
-
-    ?>
+?>
 
     <!DOCTYPE html>
     <html lang="en">
@@ -150,17 +149,32 @@
             </div>
 
             <!-- Management team section -->
-            <div class="card border-0 shadow mb-4" >
+            <div class="card border-0 shadow mb-4" style="border: 3px solid #191975 !important;">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between mb-3">
                         <h5 class="card-title m-0">Management team</h5>
                         <button type="button" class="btn btn-dark shadow-none btn-sm" style="color: white; background: linear-gradient(to top, #aa7938, #aa7938 33%, #d29751);" data-bs-toggle="modal" data-bs-target="#team-s">
                             <i class="bi bi-plus-square"></i>Add
+                            
                         </button>
                     </div>
 
                     <div class="row" id="team-data">
+                        <!-- <div class="col-md-2 mb-3">
+                            <div class="card bg-dark text-white">
+                            <img src="/frontend photos/about/team.jpg"  class="card-img" alt="Team member">
+                                <div class="card-img-overlay text-end">
+                                    <button type="button" class="btn btn-danger btn-sm shadow-sm shadow -none">
+                                    <i class="bi bi-trash"></i>Delete
+                                    </button>
+                                </div>
+                                <p class="card-text text-center px-1 py-1">Random Name</p>
+
+                            </div>
+                        </div> -->
                     </div>
+
+
                 </div>
             </div>
             <!--Management team modal-->
@@ -194,7 +208,7 @@
                 </div>
             </div>
 
-            <?php  echo $_SERVER['DOCUMENT_ROOT']?>
+            
 
             <!--contacts details modal-->
 
@@ -412,7 +426,7 @@
     }
 
     xhr.send('shutdown=' +value); // Send the value of the shutdown toggle
-}
+    }
 
 
 
@@ -530,30 +544,77 @@
 
         xhr.onload=function()
         {
-            // console.log(this.responseText);
-            // var myModal = document.getElementById('general-s')
-            // var modal = bootstrap.Modal.getInstance(myModal) // Returns a Bootstrap modal instance
-            // modal.hide();
+            console.log(this.responseText);
+                var myModal = document.getElementById('team-s')
+                var modal = bootstrap.Modal.getInstance(myModal) // Returns a Bootstrap modal instance
+                modal.hide();
 
-            // if(this.responseText==1)
-            // {
-            //     alert('success','Changes saved!');
-            //     get_general();
-            // }
-            // else{
-            //     alert('Error','No Changes made!');
-            // }
+            if(this.responseText=='inv_img')
+            {
+                alert('error','Only JPG and PNG images are allowed!');
+            }
+            else if(this.responseText=='inv_size'){
+                alert('error','Image should be less than 2MB!');
+            }
+            else if(this.responseText=='upd_failed'){
+                alert('error','Image upload failed. Server Down!');
+            }
+            else{
+                alert('Success','New member added');
+                member_name_inp.value='';
+                member_picture_inp.value='';
+                get_members();
+            }
         }
         
         xhr.send(data);
 
 
-    // }
-}
+    }
+// }
+
+    function rem_member(val)
+    {
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "../ajax/settings_crud.php", true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        
+        xhr.onload=function(){
+            console.log(this.responseText);
+            if(this.responseText==0){
+                alert('Error','Server down!');
+                // alert('success','Member Removed!');
+                // get_members();
+            }
+            else{
+                // alert('Error','Server down!');
+                alert('success','Member Removed!');
+                get_members();
+
+            }
+            
+        }
+        xhr.send('rem_member='+val);
+    }
+    function get_members()
+    {
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "../ajax/settings_crud.php", true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        
+        xhr.onload=function()
+        {
+            console.log(this.responseText);
+            document.getElementById('team-data').innerHTML=this.responseText;
+        }
+        xhr.send('get_members');
+    }
+
 
 window.onload=function(){
     get_general();
     get_contacts();
+    get_members();
 }
 </script>
 </body>
