@@ -5,6 +5,8 @@
 define('SITE_URL','https://127.0.0.1/harbor-lights-master/');
 define('ABOUT_IMG_PATH',SITE_URL.'frontend photos/about/');
 define('ABOUT_IM_PATH','/frontend photos/about/');
+define('CAROUSEL_IM_PATH','/frontend photos/carousel/');
+
 
 
 // define('ABOUT_IMG_PATH',SITE_URL.'/frontend photos/about/team.jpg');
@@ -15,6 +17,9 @@ define('ABOUT_IM_PATH','/frontend photos/about/');
 
 define('UPLOAD_IMAGE_PATH', $_SERVER['DOCUMENT_ROOT'] . '/frontend photos');
 define('ABOUT_FOLDER', '/about/');
+define('CAROUSEL_FOLDER', '/carousel/');
+
+// require('C:\Users\HP\harbor-lights-master\admin\inc\script.php');
 
 
     function adminLogin(){
@@ -36,18 +41,18 @@ define('ABOUT_FOLDER', '/about/');
             exit;
     }
     function alert($type, $msg){
-
         $bs_class=($type=="success") ? "alert-success" : "alert-danger";
 
-        echo <<<alert
+        $alert= <<<alert
             <div class="alert $bs_class alert-dismissible fade show custom-alert" role="alert">
                 <strong class="me-3">$msg</strong> 
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-            alert;
+        alert;
 
+        return $alert;
     }
-
+    // <i class="bi bi-x"></i>
     function uplpoadImage($image,$folder)
     {
         $valid_mime=['image/jpeg','image/jpeg/png','image/webp'];
@@ -83,26 +88,6 @@ define('ABOUT_FOLDER', '/about/');
             return false;
         }
     }
-    // $image=$img['picture'];
-    // // $image = '\IMG_74333.jpg'; // Replace "team.jpg" with the actual filename
-    // $folder = "about";  
-    // $upd = 'C:\Users\HP\harbor-lights-master\frontend photos'; // Updated path, using forward slashes for directory separators
-
-    // $result = deleteImage($image, $folder); // Call deleteImage() function and store the return value in $result
-    // echo "Return value: " . ($result ? "true" : "false"); 
-
-    // function deleteImage($image, $folder) {
-    // global $upd; // Access the $upd variable inside the function
-    // $file_path = $upd . '/' . $folder . $image; // Construct the full file path
-    
-    // echo "Deleting file: " . $file_path; // Print the path of the file being deleted
-    // 'C:\Users\HP\harbor-lights-master\frontend photos\about\IMG_74333.jpg';
-    // if(unlink($file_path)) { // Attempt to delete the file
-    //     return true; // Return true if deletion is successful
-    // } else {
-    //     return false; // Return false if deletion fails
-    // }
-// }
 
     
 ?>

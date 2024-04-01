@@ -1,5 +1,7 @@
 <?php
-require('C:\xampp\htdocs\harbor-lights-master\admin\inc\essentials.php');
+// require('C:\xampp\htdocs\harbor-lights-master\admin\inc\essentials.php');
+// require('essentials.php');
+require('C:\Users\HP\harbor-lights-master\admin\inc\essentials.php');
 adminLogin();
 
 ?>
@@ -7,7 +9,8 @@ adminLogin();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<?php require('C:\xampp\htdocs\admin\inc\header.php');?>
+<?php require('C:\Users\HP\harbor-lights-master\admin\inc\header.php');?>
+
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -91,6 +94,9 @@ adminLogin();
         margin-top:60px;
     }
 }
+
+
+
 </style>
 <?php require("C:\Users\HP\harbor-lights-master\admin\inc\script.php");?>
 
