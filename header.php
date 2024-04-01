@@ -1,3 +1,8 @@
+<?php
+// require('essentials.php');
+// require('db_config.php');
+
+?>
 <div class="container-fluid text-light p-3 d-flex align-items-center justify-content-between sticky-top" style="background:#191975;">
     <h3 class="mb-0 h-font">Taj Hotel</h3>
     <a href="logout.php" class="btn btn-light btn-sm" style="color: white; background-image: linear-gradient(to top, #aa7938, #aa7938 33%, #d29751);">LOG OUT</a>
@@ -32,13 +37,19 @@
                         <a class="nav-link text-white border-bottom" href="dashboard.php">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white border-bottom" href="#" style="color: #191975;;">Rooms</a>
+                        <a class="nav-link text-white border-bottom" href="rooms.php">Rooms</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white border-bottom" href="#">Users</a>
+                        <a class="nav-link text-white border-bottom" href="user_queries.php" style="color: #191975;;">User Queries</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white border-bottom" href="carousel.php">Carousel</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white border-bottom" href="settings.php">Settings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white border-bottom" href="mt.php">Management Staff</a>
                     </li>
                 </ul>
             </div>
