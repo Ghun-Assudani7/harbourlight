@@ -25,8 +25,12 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
+
   </head>
   <body>
+	<?php require('C:\Users\HP\harbor-lights-master\admin\ajax\carousel_crud.php')?>
+	<?php require('C:\Users\HP\harbor-lights-master\admin\inc\db_config.php');?>
+  <!-- "C:\Users\HP\harbor-lights-master\admin\ajax\carousel_crud.php" -->
 
 	<!-- <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 header-inner-wrap"></div> -->
 	<nav id="nav-bar" class="navbar navbar-expand-lg  navbar-light" id="ftco-navbar" style="margin-top: -20px;">
@@ -52,9 +56,9 @@
 	          <!-- <li class="nav-item active"></li><a href="index.html" class="nav-link" style="margin-top: 15px; "><b>Home</b></a></li> -->
 			  <li class="nav-item"></li><a href="index.html" class="nav-link" style="margin-top: 15px; "><b>Home</b></a></li>
  
-			  <li class="nav-item"><a href="rooms.php" class="nav-link" style="margin-top: 15px;"><b>Our Rooms</b></a></a></li>
-	          <li class="nav-item"><a href="restaurant.html" class="nav-link" style="margin-top: 15px;"><b>Special Accomodation</b></a></li>
-	          <li class="nav-item"><a href="about.php" class="nav-link" style="margin-top: 15px;"><b>About Us</b></a></li>
+			  <li class="nav-item"><a href="rooms.html" class="nav-link" style="margin-top: 15px;"><b>Our Rooms</b></a></a></li>
+	          <li class="nav-item"><a href="restaurant.html" class="nav-link" style="margin-top: 15px;"><b>Restaurant</b></a></li>
+	          <li class="nav-item"><a href="about.html" class="nav-link" style="margin-top: 15px;"><b>About Us</b></a></li>
 	          <li class="nav-item"><a href="blog.html" class="nav-link" style="margin-top: 15px;"><b>Blog</b></a></li>
 	          <li class="nav-item"><a href="contact.php" class="nav-link" style="margin-top: 15px;"><b>Contact</b></a></li>
 	        </ul>
@@ -73,7 +77,6 @@
 	      </div>
 	    </div>
 	  </nav>
-
 	
 	  <div class="modal fade" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -88,12 +91,12 @@
                   <div class="modal-body">
                     <div class="mb-3">
                         <label  class="form-label">Email address</label>
-                        <input type="password" class="form-control shadow-none">
+                        <input type="email" class="form-control shadow-none" >
                         
                     </div>
                     <div class="mb-4">
                         <label  class="form-label">Password</label>
-                        <input type="email" class="form-control shadow-none">
+                        <input type="password" class="form-control shadow-none">
                     </div>
                     <div class="d-flex align-items-center justify-content-between mb-2">
                         <button type="submit"class="btn btn-dark shadow-none ">LOGIN</button>
@@ -176,17 +179,21 @@
     	<!-- END nav -->
 		<div class="hero">
 			<section class="home-slider owl-carousel">
-				<!-- <?php     
-					$res = selectAll('carousel');
-					while ($row = mysqli_fetch_assoc($res)) 
-					{
-						$path2=CAROUSEL_IM_PATH;
-						echo <<<data
-								$path2$row[image]
-							
-							data;
-					}
-				?> -->
+			<?php     
+				// echo "ddd";	
+				// $res = selectAll('carousel');
+				// echo $res;
+				// while ($row = mysqli_fetch_assoc($res)) 
+				// {
+				// 	$path2 = CAROUSEL_IM_PATH;
+				// 	echo $path2 ;
+				// 		echo <<<data
+				// 			<div class="slider-item" style="background-image: url('$path2$row[image]');">
+				// 			</div>
+				// 		data;
+				// }
+			?>
+
 				<div class="slider-item" style="background-image:url(frontend\ photos/s1.jpg);" style="background: none;">
 				</div>
 				<div class="slider-item" style="background-image:url(frontend\ photos/or2.jpg);" style="background: none;">
@@ -510,9 +517,7 @@
 									<p class="star mb-0"style="color:#D29751;"><span class="ion-ios-star"style="color:#D29751;"></span><span class="ion-ios-star"style="color:#D29751;"></span><span class="ion-ios-star"style="color:#D29751;"></span><span class="ion-ios-star"style="color:#D29751;"></span><span class="ion-ios-star"style="color:#D29751;"></span></p>
 									<p class="mb-0"><span class="price mr-1"style="color:black">$120.00</span> <span class="per"style="color:black">per night</span></p>
 									<h3 class="mb-3"><a href="rooms.html">King Room</a></h3>
-									<!-- <p class="pt-1"><a href="room-single.html" class="btn-custom px-3 py-2 rounded"style="background-color:#D29751;color:white;">Book now <span class="icon-long-arrow-right"></span></a></p> -->
-									<a href="#" class="btn-custom px-3 py-2 rounded" style="background-color:#D29751;color:white;" onclick="alert('Room booked successfully!')">Book Now</a>
-
+									<p class="pt-1"><a href="room-single.html" class="btn-custom px-3 py-2 rounded"style="background-color:#D29751;color:white;">View Details <span class="icon-long-arrow-right"></span></a></p>
 								</div>
 							</div>
     					</div>
@@ -526,9 +531,7 @@
 									<p class="star mb-0"><span class="ion-ios-star"style="color:#D29751;"></span><span class="ion-ios-star"style="color:#D29751;"></span><span class="ion-ios-star"style="color:#D29751;"></span><span class="ion-ios-star"style="color:#D29751;"></span><span class="ion-ios-star"style="color:#D29751;"></span></p>
 									<p class="mb-0"><span class="price mr-1"style="color:black">$120.00</span> <span class="per"style="color:black">per night</span></p>
 									<h3 class="mb-3"><a href="rooms.html">Suite Room</a></h3>
-									<!-- <p class="pt-1"><a href="room-single.html" class="btn-custom px-3 py-2 rounded"style="background-color:#D29751;color:white;">View Details <span class="icon-long-arrow-right"></span></a></p> -->
-									<a href="#" class="btn-custom px-3 py-2 rounded" style="background-color:#D29751;color:white;" onclick="alert('Room booked successfully!')">Book Now</a>
-
+									<p class="pt-1"><a href="room-single.html" class="btn-custom px-3 py-2 rounded"style="background-color:#D29751;color:white;">View Details <span class="icon-long-arrow-right"></span></a></p>
 								</div>
 							</div>
 						</div>
@@ -542,9 +545,7 @@
 									<p class="star mb-0"><span class="ion-ios-star"style="color:#D29751;"></span><span class="ion-ios-star"style="color:#D29751;"></span><span class="ion-ios-star"style="color:#D29751;"></span><span class="ion-ios-star"style="color:#D29751;"></span><span class="ion-ios-star"style="color:#D29751;"></span></p>
 									<p class="mb-0"><span class="price mr-1"style="color:black">$120.00</span> <span class="per"style="color:black">per night</span></p>
 									<h3 class="mb-3"><a href="rooms.html">Family Room</a></h3>
-									<!-- <p class="pt-1"><a href="room-single.html" class="btn-custom px-3 py-2 rounded"style="background-color:#D29751;color:white;">View Details <span class="icon-long-arrow-right"></span></a></p> -->
-									<a href="#" class="btn-custom px-3 py-2 rounded" style="background-color:#D29751;color:white;" onclick="alert('Room booked successfully!')">Book Now</a>
-
+									<p class="pt-1"><a href="room-single.html" class="btn-custom px-3 py-2 rounded"style="background-color:#D29751;color:white;">View Details <span class="icon-long-arrow-right"></span></a></p>
 								</div>
 							</div>
 						</div>
@@ -557,9 +558,7 @@
 									<p class="star mb-0"><span class="ion-ios-star"style="color:#D29751;"></span><span class="ion-ios-star"style="color:#D29751;"></span><span class="ion-ios-star"style="color:#D29751;"></span><span class="ion-ios-star"style="color:#D29751;"></span><span class="ion-ios-star"style="color:#D29751;"></span></p>
 									<p class="mb-0"><span class="price mr-1"style="color:black">$120.00</span> <span class="per"style="color:black">per night</span></p>
 									<h3 class="mb-3"><a href="rooms.html">Deluxe Room</a></h3>
-									<!-- <p class="pt-1"><a href="room-single.html" class="btn-custom px-3 py-2 rounded"style="background-color:#D29751;color:white;">View Details <span class="icon-long-arrow-right"></span></a></p> -->
-									<a href="#" class="btn-custom px-3 py-2 rounded" style="background-color:#D29751;color:white;" onclick="alert('Room booked successfully!')">Book Now</a>
-
+									<p class="pt-1"><a href="room-single.html" class="btn-custom px-3 py-2 rounded"style="background-color:#D29751;color:white;">View Details <span class="icon-long-arrow-right"></span></a></p>
 								</div>
 							</div>
 						</div>
@@ -573,9 +572,7 @@
 									<p class="star mb-0"><span class="ion-ios-star"style="color:#D29751;"></span><span class="ion-ios-star"style="color:#D29751;"></span><span class="ion-ios-star"style="color:#D29751;"></span><span class="ion-ios-star"style="color:#D29751;"></span><span class="ion-ios-star"style="color:#D29751;"></span></p>
 									<p class="mb-0"><span class="price mr-1"style="color:black">$120.00</span> <span class="per"style="color:black">per night</span></p>
 									<h3 class="mb-3"><a href="rooms.html">Luxury Room</a></h3>
-									<!-- <p class="pt-1"><a href="room-single.html" class="btn-custom px-3 py-2 rounded"style="background-color:#D29751;color:white;">View Details <span class="icon-long-arrow-right"></span></a></p> -->
-									<a href="#" class="btn-custom px-3 py-2 rounded" style="background-color:#D29751;color:white;" onclick="alert('Room booked successfully!')">Book Now</a>
-
+									<p class="pt-1"><a href="room-single.html" class="btn-custom px-3 py-2 rounded"style="background-color:#D29751;color:white;">View Details <span class="icon-long-arrow-right"></span></a></p>
 								</div>
 							</div>
 						</div>
@@ -588,9 +585,7 @@
 									<p class="star mb-0"><span class="ion-ios-star"style="color:#D29751;"></span><span class="ion-ios-star"style="color:#D29751;"></span><span class="ion-ios-star"style="color:#D29751;"></span><span class="ion-ios-star"style="color:#D29751;"></span><span class="ion-ios-star"style="color:#D29751;"></span></p>
 									<p class="mb-0"><span class="price mr-1"style="color:black">$120.00</span> <span class="per"style="color:black">per night</span></p>
 									<h3 class="mb-3"><a href="rooms.html">Superior Room</a></h3>
-									<!-- <p class="pt-1"><a href="room-single.html" class="btn-custom px-3 py-2 rounded"style="background-color:#D29751;color:white;">View Details <span class="icon-long-arrow-right"></span></a></p> -->
-									<a href="#" class="btn-custom px-3 py-2 rounded" style="background-color:#D29751;color:white;" onclick="alert('Room booked successfully!')">Book Now</a>
-
+									<p class="pt-1"><a href="room-single.html" class="btn-custom px-3 py-2 rounded"style="background-color:#D29751;color:white;">View Details <span class="icon-long-arrow-right"></span></a></p>
 								</div>
 							</div>
 						</div>
@@ -713,7 +708,7 @@
         <div class="row d-flex">
           <div class="col-md-4 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('images/image_1.jpg');">
+              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('frontend\ photos/');">
               </a>
               <div class="text mt-3 text-center">
               	<div class="meta mb-2">
@@ -1114,7 +1109,34 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		}
 	}
 	setActive();
+
+	
   </script>
+  <?php 
+//   if (isset($_POST['get_carousel'])) 
+//   {
+// 	echo "infunc";
+//     $res = selectAll('carousel');
+
+//     while ($row = mysqli_fetch_assoc($res)) 
+//     {
+//       $path2 = CAROUSEL_IM_PATH;
+//       echo <<<data
+//         <div class="col-md-2 mb-3">
+//           <div class="card bg-dark text-white">
+//             <img src="{$path2}{$row['image']}" class="card-img">
+//             <div class="card-img-overlay text-end">
+//               <button type="button" onclick="rem_image({$row['sr_no']})" class="btn btn-danger btn-sm shadow-sm shadow-none">
+//                 <i class="bi bi-trash"></i>Delete
+//               </button>
+//             </div>
+//           </div>
+//         </div>
+//       data;
+//     }
+//   }
+?>
+
   <style>
 	.room-wrap {
 		width: 100%;

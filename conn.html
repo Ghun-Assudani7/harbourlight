@@ -1,0 +1,90 @@
+<?php
+// Database configuration
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "taj_hotel";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Create the hotelmanagement database
+$conn->query("CREATE DATABASE IF NOT EXISTS $database");
+
+// Switch to the hotelmanagement database
+$conn->select_db($database);
+
+
+
+$conn->query($tableCreationQuery);
+
+// Add an index on the username for faster searches if it does not exist
+$indexCheckQuery = "SHOW INDEX FROM users WHERE Key_name = 'idx_username'";
+$indexCheckResult = $conn->query($indexCheckQuery);
+
+if ($indexCheckResult->num_rows == 0) {
+    $conn->query("CREATE INDEX idx_username ON users (username)");
+} else {
+    echo "Index idx_username already exists!";
+}
+
+// Function to sanitize input data
+function sanitizeInput($data) {
+    global $conn;
+    return mysqli_real_escape_string($conn, trim($data));
+}
+
+// Function to retrieve user information
+function getUserInfo($username)
+{
+    global $conn;
+    $username = sanitizeInput($username);
+    $sql = "SELECT * FROM users WHERE username='$username'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        return $result->fetch_assoc();
+    } else {
+        return null;
+    }
+}
+
+// Handle user login
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
+    $loginUsername = sanitizeInput($_POST["loginUsername"]);
+    $loginPassword = sanitizeInput($_POST["loginPassword"]);
+
+    // Retrieve hashed password and user information from the database
+    $sql = "SELECT * FROM users WHERE username='$loginUsername'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $hashedPassword = $row["password"];
+
+        // Verify the password
+        if (password_verify($loginPassword, $hashedPassword)) {
+            // Login successful, retrieve user information
+            $userInfo = getUserInfo($loginUsername);
+
+            // Display user information
+            echo "Login successful!<br>";
+            echo "User ID: " . $userInfo['id'] . "<br>";
+            echo "Username: " . $userInfo['username'] . "<br>";
+            echo "Email: " . $userInfo['email'] . "<br>";
+        } else {
+            echo "Invalid password!";
+        }
+    } else {
+        echo "User not found!";
+    }
+}
+
+// Close the connection
+$conn->close();
+?>
