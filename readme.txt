@@ -50,3 +50,4 @@ To run the application:
 Open your web browser.
 Navigate to http://localhost/your-repo-name/ to access the application.
 Follow any additional instructions provided within the application to interact with its features.
+
